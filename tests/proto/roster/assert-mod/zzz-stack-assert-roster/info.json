@@ -1,0 +1,11 @@
+{
+  "name": "zzz-stack-assert-roster",
+  "version": "0.1.0",
+  "title": "VPA stack assert (roster)",
+  "author": "deadrat22",
+  "factorio_version": "2.1",
+  "dependencies": [
+    "base >= 2.1.0"
+  ],
+  "description": "Test-only assert mod for the vanilla-plus-arsenal stack-load test; logs E2E_CHECK markers that tests/proto/roster/expected-B.txt greps for. Not for distribution."
+}

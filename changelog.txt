@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 2026-10-29
+  Features:
+    - Parent set updated to the installed stack: Missile Defense Systems Redux (fork of missile_defense_systems_sa) and doeWorks Rocket Artillery Continued (fork of doeworks-deer); Two more Turrets, Heavy Gun Turret and VortiK Cannon Turret unchanged. Roster notes now record that Two more Turrets defers to the standalone parents when they are present, and that MDS Redux keeps the vanilla rocket turret (the original _sa mod removed it).
+    - Stack-load test (make test-stack): loads the live save-synced mod set plus this mod through --scenario2map and asserts the roster, the parents' turret prototypes, Two more Turrets' deferral, and the vanilla rocket turret's survival.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-10-27
+  Features:
+    - Skeleton release: detects the optional turret parents (Two more Turrets, Heavy Gun Turret, VortiK Cannon Turret, Missile Defense Systems SA, doeWorks Rocket Artillery) and logs the detected roster. No balance changes yet.
+    - Stack-load test harness (make test-stack): loads the live vanilla+ mod set plus the vendored parents through --scenario2map and asserts roster markers and prototype counts.
+---------------------------------------------------------------------------------------------------

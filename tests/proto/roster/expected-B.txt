@@ -1,0 +1,12 @@
+# Fixed state: full stack + vanilla-plus-arsenal loads with all five
+# parents contributing prototypes, TMT deferred, vanilla rocket turret kept.
+\[vanilla-plus-arsenal\] roster: 5 parents present, 0 absent
+E2E_CHECK::turret\.heavy-gun-turret=present
+E2E_CHECK::turret\.vtk-cannon-turret=present
+E2E_CHECK::turret\.vtk-cannon-turret-heavy=present
+E2E_CHECK::turret\.basic-missile-defense-system=present
+E2E_CHECK::turret\.advanced-missile-defense-system=present
+E2E_CHECK::turret\.dw-deer-turret=present
+E2E_CHECK::turret\.rocket-turret=present
+E2E_CHECK::turret\.cannon-turret=absent
+E2E_CHECK::missile\.enough=true
