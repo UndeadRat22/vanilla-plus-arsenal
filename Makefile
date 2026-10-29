@@ -1,4 +1,4 @@
-.PHONY: test-stack lint package install
+.PHONY: test-stack stats lint package install
 
 # Path to the Factorio binary (auto-detected from Steam install on macOS)
 FACTORIO_BIN ?= $(HOME)/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/factorio
@@ -23,6 +23,20 @@ endif
 # parents included) + this mod, asserted via tests/proto/roster.
 test-stack:
 	FACTORIO_BIN="$(FACTORIO_BIN)" sh tests/run-stack.sh
+
+# Data-stage dump of the live stack + turret stat baseline.
+# Work dir mirrors the live mod set, so the dump reflects every parent's
+# final data-stage values.
+stats:
+	@WORK="${TMPDIR:-/tmp}/vpa-stats"; rm -rf "$$WORK"; \
+	mkdir -p "$$WORK"/mods "$$WORK"/saves "$$WORK"/script-output "$$WORK"/scenarios; \
+	for f in "$(HOME)/Library/Application Support/factorio/mods"/*.zip; do \
+	  ln -sfn "$$f" "$$WORK/mods/$$(basename $$f)"; done; \
+	cp "$(HOME)/Library/Application Support/factorio/mods/mod-list.json" "$$WORK/mods/mod-list.json"; \
+	printf '[path]\nread-data=%s/data\nwrite-data=%s\n\n[general]\nlocale=en\n' \
+	  "$$(dirname "$$(dirname "$(FACTORIO_BIN)")")" "$$WORK" > "$$WORK/config.ini"; \
+	"$(FACTORIO_BIN)" --config "$$WORK/config.ini" --dump-data --disable-audio; \
+	python3 scripts/dump_turret_stats.py "$$WORK/script-output/data-raw-dump.json"
 
 lint:
 	luacheck .
