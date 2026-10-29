@@ -29,9 +29,9 @@ The gun and laser turrets were the underdogs, so they got the first buffs:
 
 Both are startup settings, on by default, and can be turned off separately.
 
-## The turrets (all optional)
+## The turrets
 
-Use any subset. With none of them installed this mod does nothing.
+Install this mod and the game installs all five with it. They're required dependencies, which is the honest contract: this mod exists to coordinate them. (Disabling one disables this mod too - the game enforces it.) What each one brings:
 
 - [Two more Turrets](https://mods.factorio.com/mod/TwoMoreTurrets) - a cannon turret and a heavy gun turret balanced for Space Age
 - [Heavy Gun Turret](https://mods.factorio.com/mod/heavy_gun_turret) - the bullet wall: triple fire rate, more health, needs power (Vulcanus science)

@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2026-10-29
+  Features:
+    - First stable release. All five turret parents are now required dependencies with version floors (TwoMoreTurrets >= 4.2.2, heavy_gun_turret >= 0.2.1, vtk-cannon-turret >= 2.4.3, missile-defense-systems-redux >= 2.2.1, doeworks-deer-continued >= 1.0.0) plus an explicit space-age requirement: the in-game Install button downloads the whole set in one click. The roster guards remain, so a force-load without a parent (the "install without dependencies" path) degrades cleanly instead of crashing. Disabling a parent in the mod list disables this mod with it (game-enforced).
+---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2026-10-29
   Features:

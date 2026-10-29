@@ -2,13 +2,22 @@
 
 A curation and balance layer over standalone turret mods for vanilla+ /
 Space Age games: the turret variety of a K2SO Arsenal stack without the
-modpack. All parents are optional dependencies; the mod adapts to whichever
-are installed.
+modpack. All five turret mods are required dependencies with version
+floors, so the in-game Install button pulls them automatically; the roster
+guards still degrade cleanly on a force-load without them.
 
-Status: v0.2. The roster detects parents; the first balance module
-(K2-style vanilla turret buffs) is live and covered by the A/B stack test.
+Status: 1.0.0. The roster detects parents; the vanilla turret buffs are
+live and covered by the A/B stack test; all parents are required
+dependencies (one-click install).
 
-## Parents (all optional)
+## Parents (required dependencies, auto-installed)
+
+All five are required with version floors at the versions this mod is
+tested against (`>=` in info.json). The in-game Install button downloads
+the whole set in one click, and disabling a parent disables this mod with
+it (game-enforced). The roster guards remain as defense in depth: a
+force-load without a parent (the portal's "install without dependencies"
+path) logs and no-ops instead of crashing.
 
 | Parent | Niche |
 | --- | --- |

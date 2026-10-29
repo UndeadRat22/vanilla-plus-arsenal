@@ -1,17 +1,17 @@
 {
   "name": "vanilla-plus-arsenal",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "title": "Vanilla+ Arsenal",
   "author": "deadrat22",
   "factorio_version": "2.1",
   "dependencies": [
     "base >= 2.1.0",
-    "? space-age",
-    "? TwoMoreTurrets",
-    "? heavy_gun_turret",
-    "? vtk-cannon-turret",
-    "? missile-defense-systems-redux",
-    "? doeworks-deer-continued"
+    "space-age >= 2.1",
+    "TwoMoreTurrets >= 4.2.2",
+    "heavy_gun_turret >= 0.2.1",
+    "vtk-cannon-turret >= 2.4.3",
+    "missile-defense-systems-redux >= 2.2.1",
+    "doeworks-deer-continued >= 1.0.0"
   ],
-  "description": "Turret variety for a mostly vanilla game: five standalone turret mods, each with one job, plus small balance tweaks that keep all of them worth building. Buffs, not nerfs: gun turret range 18-24 with double per-shot damage (half the ammo belt for the same kills), laser turret range 24-28 with double per-shot damage. All parents are optional; vanilla ammo wherever possible."
+  "description": "Turret variety for a mostly vanilla game: five standalone turret mods, each with one job, plus small balance tweaks that keep all of them worth building. Buffs, not nerfs: gun turret range 18-24 with double per-shot damage (half the ammo belt for the same kills), laser turret range 24-28 with double per-shot damage. The five turret mods are required dependencies, so installing this one pulls them automatically. Vanilla ammo wherever possible."
 }

@@ -1,9 +1,11 @@
 -- Roster: which turret parents are present, and what this mod governs.
 --
--- Each entry is one optional parent. Detection only, in data-final-fixes
--- (after every parent's own data stages ran, so mods[] is authoritative).
--- Later balance modules key off this roster instead of re-probing mods[]
--- themselves.
+-- Each entry is one parent (a required dependency at install time, but
+-- still probed here: the portal offers an "install without dependencies"
+-- escape hatch, and save-sync edge cases exist - a missing parent logs
+-- and degrades cleanly). Detection runs in data-final-fixes after every
+-- parent's own data stages, so mods[] is authoritative. Later balance
+-- modules key off this roster instead of re-probing mods[] themselves.
 --
 -- Notes from the installed stack (verified 2026-10-29):
 --   - TwoMoreTurrets fully defers to heavy_gun_turret and vtk-cannon-turret
