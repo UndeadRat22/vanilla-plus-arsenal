@@ -13,5 +13,5 @@
     "? missile-defense-systems-redux",
     "? doeworks-deer-continued"
   ],
-  "description": "A curation and balance layer over standalone turret mods for vanilla+ Space Age games: the turret variety of a K2SO Arsenal stack without the modpack. All parents are optional; the mod adapts to whichever are installed. v0.2 adds K2-style vanilla turret buffs: gun-turret range 18-24 with double per-shot damage (half the ammo per kill), laser-turret range 24-28 with double per-shot damage. Both are startup settings."
+  "description": "Turret variety for a mostly vanilla game: five standalone turret mods, each with one job, plus small balance tweaks that keep all of them worth building. Buffs, not nerfs: gun turret range 18-24 with double per-shot damage (half the ammo belt for the same kills), laser turret range 24-28 with double per-shot damage. All parents are optional; vanilla ammo wherever possible."
 }

@@ -10,31 +10,39 @@ markdown implementation; nested structures and tables are avoided.
 
 # Vanilla+ Arsenal
 
-A curation and balance layer over standalone turret mods for vanilla+ /
-Space Age games: the turret variety of a K2SO Arsenal stack without the
-modpack. All parents are optional — the mod adapts to whichever are
-installed, and stays a no-op without them.
+Turret variety for a mostly vanilla game: five standalone turret mods, each with one job, plus small balance tweaks that keep all of them worth building.
 
-## What it does
+I like what big modpacks do to defenses. Suddenly there are cannons, missile platforms, rocket artillery, and an actual reason to think about which turret goes where. What I don't like is paying for that with the rest of the modpack. So this is the middle ground: your factory stays vanilla, your wall gets interesting.
 
-- **Vanilla turret buffs (K2-style, buffs not nerfs)**: gun turret range 18 → 24 with double per-shot damage (48 per uranium round, 480 DPS); laser turret range 24 → 28 with double per-shot damage (40 per shot, 60 DPS). The damage buffs are per-shot, not fire rate, so the same kills cost half the bullet belt. Both are startup settings, on by default.
-- **Roster detection**: logs which turret parents are present; future balance modules key off it.
-- The heavy gun turret is deliberately untouched — it stays the DPS wall you graduate to on Vulcanus, and demolishers stay laser-immune (that is basegame design).
+## Design
 
-The resulting role split: bullets are the damage, missiles are the reach.
+- Every turret has a niche. Bullets are the damage, missiles are the reach, cannons hit big single targets, rocket artillery softens waves before they arrive. None of them is strictly the best; what to build depends on what's coming.
+- Buffs, not nerfs. In my experience bringing things up balances better than dragging the leader down, and nothing you already built becomes worthless overnight.
+- No ammo zoo. Wherever possible the turrets eat vanilla ammo: the same bullets, rockets and cannon shells your factory already makes.
 
-## Parents (all optional)
+## What it changes today
 
-- [Two more Turrets](https://mods.factorio.com/mod/TwoMoreTurrets) — cannon + heavy gun pair, tuned for Space Age. Fully defers to the standalone parents when they are installed.
-- [Heavy Gun Turret](https://mods.factorio.com/mod/heavy_gun_turret) — the bullet-DPS wall (Vulcanus science).
-- [VortiK Cannon Turret](https://mods.factorio.com/mod/vtk-cannon-turret) — single-target cannon punch.
-- [Missile Defense Systems Redux](https://mods.factorio.com/mod/missile-defense-systems-redux) — guided missile family; keeps the vanilla rocket turret.
-- [doeWorks Rocket Artillery Continued](https://mods.factorio.com/mod/doeworks-deer-continued) — early-game area softening at 90 tiles.
+The gun and laser turrets were the underdogs, so they got the first buffs:
 
-## Ammo economy
+- Gun turret: range 18 to 24, double damage per shot (48 per uranium round). The buff is per shot, not fire rate, so the same kills cost half the bullet belt.
+- Laser turret: range 24 to 28, double damage per shot (40 instead of 20).
 
-The stack stays vanilla-lean on ammunition: gun and heavy gun turrets share the vanilla bullet line, the rocket turret and both missile systems share the vanilla rocket line (atomic bombs included), artillery and railgun are vanilla. VortiK's cannon turrets ship magazines that mirror vanilla cannon shells — set its `vtk-cannon-turret-ammo-use` startup setting to 3 to also feed them plain tank shells.
+Both are startup settings, on by default, and can be turned off separately.
 
-## Quality
+## The turrets (all optional)
 
-Every claim above is verified by an A/B data-stage harness against the full 94-mod save-synced stack: Phase A asserts vanilla base values without this mod, Phase B asserts the roster, the parents' prototypes and the buffed values. The balance baseline (ranges, dead zones, DPS, tech placement for all 13 turrets, from a `--dump-data` dump of the live stack) lives in the repository.
+Use any subset. With none of them installed this mod does nothing.
+
+- [Two more Turrets](https://mods.factorio.com/mod/TwoMoreTurrets) - a cannon turret and a heavy gun turret balanced for Space Age
+- [Heavy Gun Turret](https://mods.factorio.com/mod/heavy_gun_turret) - the bullet wall: triple fire rate, more health, needs power (Vulcanus science)
+- [VortiK Cannon Turret](https://mods.factorio.com/mod/vtk-cannon-turret) - slow, heavy single-target punch with cannon shells
+- [Missile Defense Systems Redux](https://mods.factorio.com/mod/missile-defense-systems-redux) - guided missile turrets from short range up to artillery range; keeps the vanilla rocket turret
+- [doeWorks Rocket Artillery Continued](https://mods.factorio.com/mod/doeworks-deer-continued) - early artillery at 90 tiles with a wide dead zone; it won't save you by itself, it softens what's coming
+
+## Ammo
+
+Gun turrets and the heavy gun turret share the vanilla bullet line. The rocket turret and both missile systems share the vanilla rocket line, atomic bombs included. Artillery and railguns are vanilla. The only custom ammo in the set is the ballistic missile line (artillery class, nothing vanilla to reuse) and the rocket artillery's own rockets. VortiK's cannon turrets ship magazines that mirror vanilla cannon shells; set its `vtk-cannon-turret-ammo-use` setting to 3 and they take plain tank shells too.
+
+## Where the numbers come from
+
+Every number in this description comes from a data dump of the actual mod stack, not from a wiki, and every claim is checked by an automated test that loads the full stack and verifies the prototypes, the unlock technologies, and whether the buffs applied. The baseline for all turrets (ranges, dead zones, DPS, tech placement) lives in the repository.
