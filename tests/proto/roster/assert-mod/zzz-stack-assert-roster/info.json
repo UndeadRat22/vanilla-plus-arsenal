@@ -5,7 +5,8 @@
   "author": "deadrat22",
   "factorio_version": "2.1",
   "dependencies": [
-    "base >= 2.1.0"
+    "base >= 2.1.0",
+    "? vanilla-plus-arsenal"
   ],
-  "description": "Test-only assert mod for the vanilla-plus-arsenal stack-load test; logs E2E_CHECK markers that tests/proto/roster/expected-B.txt greps for. Not for distribution."
+  "description": "Test-only assert mod for the vanilla-plus-arsenal stack-load test; logs E2E_CHECK markers that tests/proto/roster/expected-B.txt greps for. The optional dependency on vanilla-plus-arsenal forces this mod to load after it in the data stages (dependency edges beat alphabetical order), so the buff assertions observe the final patched values. Not for distribution."
 }

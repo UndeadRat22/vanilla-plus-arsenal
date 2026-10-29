@@ -19,16 +19,17 @@ require_vendor() {
     || die "no vendor manifest in $VENDOR_DIR (run: make vendor)"
 }
 
-# prepare_work_dir <work> <scenario-name> <check-dir>
+# prepare_work_dir <work> <scenario-name> <check-dir> [with_mod=1]
 # Builds an isolated Factorio user dir: mods/ gets every zip from the live
 # vanilla+ mods dir (the save-synced set, mirrored as-is), the vendored
-# turret parents, the check's assert mods, and a symlink to this repo as
-# the mod under test. Plus saves/, script-output/, scenarios/ and a
-# path-mapping config.ini.
+# turret parents, the check's assert mods, and - unless with_mod=0 - a
+# symlink to this repo as the mod under test. Plus saves/,
+# script-output/, scenarios/ and a path-mapping config.ini.
 prepare_work_dir() {
   work="$1"
   scenario="$2"
   check_dir="$3"
+  with_mod="${4:-1}"
 
   rm -rf "$work"
   mkdir -p "$work"/mods "$work"/saves "$work"/script-output "$work"/scenarios
@@ -46,7 +47,9 @@ prepare_work_dir() {
     done
   fi
 
-  ln -sfn "$MOD_DIR" "$work/mods/$MOD_ID"
+  if [ "$with_mod" = "1" ]; then
+    ln -sfn "$MOD_DIR" "$work/mods/$MOD_ID"
+  fi
 
   cat > "$work/config.ini" <<EOF
 [path]

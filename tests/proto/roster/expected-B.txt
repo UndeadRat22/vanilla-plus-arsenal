@@ -10,3 +10,6 @@ E2E_CHECK::turret\.dw-deer-turret=present
 E2E_CHECK::turret\.rocket-turret=present
 E2E_CHECK::turret\.cannon-turret=absent
 E2E_CHECK::missile\.enough=true
+# vanilla-buffs: gun 18->24 / x2 damage, laser 24->28 / x2 damage
+E2E_CHECK::buff\.gun range=24 mod=2
+E2E_CHECK::buff\.laser range=28 mod=4

@@ -1,0 +1,3 @@
+# Base state: the stack without vanilla-plus-arsenal shows vanilla values.
+E2E_CHECK::buff\.gun range=18 mod=1
+E2E_CHECK::buff\.laser range=24 mod=2

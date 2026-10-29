@@ -12,3 +12,4 @@
 --   can key off it. No prototypes are touched yet.
 
 require("arsenal.roster")
+require("arsenal.vanilla-buffs")

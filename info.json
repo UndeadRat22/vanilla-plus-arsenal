@@ -1,6 +1,6 @@
 {
   "name": "vanilla-plus-arsenal",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "title": "Vanilla+ Arsenal",
   "author": "deadrat22",
   "factorio_version": "2.1",
@@ -13,5 +13,5 @@
     "? missile-defense-systems-redux",
     "? doeworks-deer-continued"
   ],
-  "description": "A curation and balance layer over standalone turret mods for vanilla+ Space Age games: the turret variety of a K2SO Arsenal stack without the modpack. All parents are optional; the mod adapts to whichever are installed. v0.1 is a skeleton: it detects the installed parents and logs the roster, with balance modules to follow."
+  "description": "A curation and balance layer over standalone turret mods for vanilla+ Space Age games: the turret variety of a K2SO Arsenal stack without the modpack. All parents are optional; the mod adapts to whichever are installed. v0.2 adds K2-style vanilla turret buffs: gun-turret range 18-24 with double per-shot damage (half the ammo per kill), laser-turret range 24-28 with double per-shot damage. Both are startup settings."
 }

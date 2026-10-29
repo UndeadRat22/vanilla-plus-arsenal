@@ -1,10 +1,10 @@
 #!/bin/sh
-# Full-stack data-stage load test for vanilla-plus-arsenal.
+# Full-stack data-stage load test for vanilla-plus-arsenal (A/B).
 #
-# Loads the live vanilla+ mod set (mirrored from the save-synced mods dir
-# and mod-list.json, turret parents included) plus this mod and the roster
-# assert mod, through --scenario2map - the same harness pattern as
-# k2so-rats-fixes' tests/run-proto.sh.
+# Phase A loads the live vanilla+ mod set WITHOUT this mod and asserts the
+# base values (vanilla turret stats); Phase B adds this mod and asserts
+# the roster, the parents' turret prototypes, and the buffed values.
+# Same harness pattern as k2so-rats-fixes' tests/run-proto.sh.
 #
 # Usage: make test-stack   (or: sh tests/run-stack.sh)
 # Env:   FACTORIO_BIN, WORK (work dir override)
@@ -21,11 +21,21 @@ for d in "$CHECK_DIR"/assert-mod/*/; do
 done
 [ -n "$assert_ids" ] || die "no assert mod under $CHECK_DIR/assert-mod"
 
-echo "=== vanilla-plus-arsenal stack load ==="
-prepare_work_dir "$WORK" proto-check "$CHECK_DIR"
+echo "=== Phase A: base stack, no vanilla-plus-arsenal ==="
+prepare_work_dir "$WORK" proto-check "$CHECK_DIR" 0
+write_mod_list "$WORK" $assert_ids
+run_scenario2map A "$WORK" proto-check
+check_log_patterns A "$WORK/phase-A-scenario2map.log" "$CHECK_DIR/expected-A.txt"
+echo "Phase A passed (base state confirmed)."
+
+echo
+echo "=== Phase B: with vanilla-plus-arsenal ==="
+# same work dir, add the mod under test (k2so-rats-fixes' run-proto pattern)
+ln -sfn "$MOD_DIR" "$WORK/mods/$MOD_ID"
 write_mod_list "$WORK" $assert_ids vanilla-plus-arsenal
 run_scenario2map B "$WORK" proto-check
 check_log_patterns B "$WORK/phase-B-scenario2map.log" "$CHECK_DIR/expected-B.txt"
+echo "Phase B passed (roster + buffs verified)."
 
 echo
 echo "STACK LOAD PASSED (logs in $WORK)"

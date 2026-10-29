@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 2026-10-29
+  Features:
+    - Vanilla turret buffs (K2-style, buffs not nerfs): gun-turret range 18 -> 24 and damage_modifier 1 -> 2 (48 per uranium round, 480 DPS); laser-turret range 24 -> 28 and damage_modifier 2 -> 4 (40 per shot, 60 DPS). Damage buffs are per-shot, not fire rate, so the same kills cost half the bullet belt. Both controlled by startup settings (on by default). heavy-gun-turret is untouched - it stays the DPS wall on Vulcanus.
+    - Stack test is now A/B: Phase A asserts vanilla base values without the mod, Phase B asserts the roster, parent prototypes and the buffed values.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 2026-10-29
   Features:

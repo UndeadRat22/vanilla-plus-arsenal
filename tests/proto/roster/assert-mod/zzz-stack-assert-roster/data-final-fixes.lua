@@ -53,3 +53,17 @@ for _, t in ipairs(TURRET_TYPES) do
 end
 log(("E2E_CHECK::missile.count=%d"):format(missile_count))
 log(("E2E_CHECK::missile.enough=%s"):format(tostring(missile_count >= 2)))
+
+-- vanilla-buffs module state (vanilla values in Phase A, buffs in B)
+local gt = data.raw["ammo-turret"] and data.raw["ammo-turret"]["gun-turret"]
+if gt and type(gt.attack_parameters) == "table" then
+  log(("E2E_CHECK::buff.gun range=%s mod=%s")
+    :format(tostring(gt.attack_parameters.range),
+            tostring(gt.attack_parameters.damage_modifier or 1)))
+end
+local lt = data.raw["electric-turret"] and data.raw["electric-turret"]["laser-turret"]
+if lt and type(lt.attack_parameters) == "table" then
+  log(("E2E_CHECK::buff.laser range=%s mod=%s")
+    :format(tostring(lt.attack_parameters.range),
+            tostring(lt.attack_parameters.damage_modifier or 1)))
+end

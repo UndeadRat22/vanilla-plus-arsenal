@@ -5,9 +5,8 @@ Space Age games: the turret variety of a K2SO Arsenal stack without the
 modpack. All parents are optional dependencies; the mod adapts to whichever
 are installed.
 
-Status: skeleton (v0.1.x). The mod detects the installed parents and logs
-the roster; balance modules follow. The full-stack load test is real and
-green.
+Status: v0.2. The roster detects parents; the first balance module
+(K2-style vanilla turret buffs) is live and covered by the A/B stack test.
 
 ## Parents (all optional)
 
@@ -37,6 +36,25 @@ portal anymore when the stack was assembled.
 - All five parents' turrets load together with the full 94-mod vanilla+
   save-synced stack (`make test-stack`, below).
 
+## Ammo re-use (verified from the live dump)
+
+The stack is already vanilla-lean on ammunition - 10 custom ammo items
+total, and three of the five parents use none at all:
+
+- **bullets**: gun-turret and heavy-gun-turret share the vanilla firearm /
+  piercing / uranium rounds line. Zero custom items.
+- **rockets**: rocket-turret, basic and advanced missile systems all share
+  the vanilla rocket line (including atomic bombs). Zero custom items.
+- **artillery-shell / railgun**: vanilla only.
+- **vtk-cannon-turret** ships 4 magazine items that statistically mirror
+  the vanilla cannon shells. The mod has a built-in startup setting,
+  `vtk-cannon-turret-ammo-use` (1 = magazines only [default], 2 = vanilla
+  shells only, 3 = both): set it to 3 to feed the turrets plain tank
+  shells. Recommended.
+- **missile-defense-systems-redux** adds 4 ballistic missiles (artillery
+  class; no vanilla equivalent to re-use) and **doeworks-deer-continued**
+  2 items (basic + the joke crate). Left as-is on purpose.
+
 ## Testing
 
 ```
@@ -54,14 +72,26 @@ mod (`tests/proto/roster/assert-mod/`) logs `E2E_CHECK` markers that
 `expected-B.txt` greps for: parent prototypes exist, Two more Turrets
 deferred, and the vanilla rocket turret survived.
 
+## v0.2 balance module: vanilla turret buffs
+
+Buffs, not nerfs (K2-style): gun-turret range 18 -> 24 with
+`damage_modifier` 1 -> 2 (48 per uranium round, 480 DPS, half the ammo
+belt for the same kills), laser-turret range 24 -> 28 with
+`damage_modifier` 2 -> 4 (40 per shot, 60 DPS). Both startup settings,
+on by default. heavy-gun-turret is untouched - it stays the DPS wall you
+graduate to on Vulcanus, and demolishers stay laser-immune (basegame
+design). Resulting role split: bullets are the damage, missiles are the
+reach.
+
 ## Layout
 
 - `data-final-fixes.lua` - entry point; requires `arsenal/` modules
-- `arsenal/roster.lua` - parent detection + logging (the current extent
-  of the mod)
-- `tests/` - harness (lib.sh, run-stack.sh, proto-check scenario, asserts)
-- Later: `arsenal/<module>.lua` per balance concern, `settings.lua` for
-  curation knobs
+- `arsenal/roster.lua` - parent detection + logging
+- `arsenal/vanilla-buffs.lua` - the v0.2 K2-style vanilla turret buffs
+- `settings.lua` - startup toggles for the buffs
+- `tests/` - harness (lib.sh, run-stack.sh A/B, proto-check scenario,
+  asserts)
+- Later: `arsenal/<module>.lua` per balance concern
 
 ## Conventions
 
