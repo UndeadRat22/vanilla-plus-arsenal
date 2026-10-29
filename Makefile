@@ -1,4 +1,4 @@
-.PHONY: test-stack stats lint package install
+.PHONY: test-stack stats thumbnail lint package install
 
 # Path to the Factorio binary (auto-detected from Steam install on macOS)
 FACTORIO_BIN ?= $(HOME)/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/factorio
@@ -38,22 +38,28 @@ stats:
 	"$(FACTORIO_BIN)" --config "$$WORK/config.ini" --dump-data --disable-audio; \
 	python3 scripts/dump_turret_stats.py "$$WORK/script-output/data-raw-dump.json"
 
+thumbnail:
+	python3 scripts/make_thumbnail.py
+
 lint:
 	luacheck .
 
-# Files shipped in the zip: info.json + Lua are runtime requirements,
-# changelog.txt is shown by the in-game mod list and LICENSE must accompany
-# MIT-licensed distributions. README.md, tests/, scripts/ and the Makefile
-# are repo-only and stay out.
+# Files shipped in the zip: info.json + Lua + locale are runtime
+# requirements, changelog.txt is shown by the in-game mod list,
+# thumbnail.png is read by the mod portal (required for publishing), and
+# LICENSE must accompany MIT-licensed distributions.
+# README.md, PORTAL.md, docs/, tests/, scripts/ and the Makefile are
+# repo-only and stay out.
 package:
 	@echo "Packaging $(MOD_NAME) $(VERSION)..."
 	@rm -rf $(PACKAGE_DIR) $(RELEASES_DIR)
 	@mkdir -p $(RELEASES_DIR)
 	@mkdir -p $(PACKAGE_DIR)
-	@cp -r changelog.txt data-final-fixes.lua info.json LICENSE $(PACKAGE_DIR)/
+	@[ -f thumbnail.png ] || $(MAKE) thumbnail
+	@cp -r changelog.txt data-final-fixes.lua info.json LICENSE thumbnail.png $(PACKAGE_DIR)/
 	@[ ! -d arsenal ] || cp -r arsenal $(PACKAGE_DIR)/
 	@[ ! -f settings.lua ] || cp settings.lua $(PACKAGE_DIR)/
-	@[ ! -d locale ] || cp -R locale $(PACKAGE_DIR)/ 2>/dev/null || true
+	@[ ! -d locale ] || cp -R locale $(PACKAGE_DIR)/
 	@zip -r $(PACKAGE_DIR).zip $(PACKAGE_DIR) >/dev/null
 	@mv $(PACKAGE_DIR).zip $(RELEASES_DIR)/
 	@rm -rf $(PACKAGE_DIR)
